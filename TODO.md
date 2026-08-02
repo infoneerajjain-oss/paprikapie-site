@@ -1,17 +1,33 @@
-# Before you go live — 5 things only you can fill in
+# What's still missing — only 2 things now
 
-I built the site with real menu prices from your current site. These five
-placeholders need your actual details. Search for the text in the left column.
+Everything else is filled in with your real registration data.
 
 | Search for | Where | Put in |
 |---|---|---|
-| `11:00 AM – 11:00 PM` | `assets/../*.html` + `build` | Your real opening hours |
-| `00000000000000` | footer + about page | Your 14-digit FSSAI licence number |
-| `Min order: ₹149` / `₹20 · free above ₹299` / `₹10 per box` | delivery strip | Your real delivery terms |
-| `29.4056, 76.6706` | schema in `index.html` | Exact coordinates — right-click your shop on Google Maps |
-| `"sameAs": []` | schema in `index.html` | Your Instagram and Facebook URLs |
+| `11:00 AM – 11:00 PM, all days` | every `.html` file | Your real opening hours |
+| `Min order: ₹149` / `₹20 · free above ₹299` / `₹10 per box` / `30–40 min` | the delivery strip at the bottom of every page | Your real delivery terms |
 
-Fastest way: open each `.html` file, use Find & Replace, done in 10 minutes.
+Open each file, Find & Replace, done in 5 minutes.
+
+---
+
+# Already filled in from your documents
+
+| | |
+|---|---|
+| FSSAI licence | 10824008000053 (valid to 05 May 2027) — footer + Visit Us page |
+| Exact coordinates | 29.4057029, 76.6685684 — from your Udyam certificate, now in the schema and the map |
+| Address | S.D. No. J-21, Opp. Stadium Market, M.G. Road, Safidon - 126112 (Jind), Haryana |
+| Instagram | instagram.com/paprika__pie — footer, Visit Us, and linked in schema |
+| Facebook | linked in footer, Visit Us, and schema |
+| Google Maps | "Get directions" button on Visit Us, "Open in Google Maps" in footer |
+| Opened | August 2023 — used in the Our Story section and schema |
+
+## Kept off the website on purpose
+
+Your documents also contained a PAN number, an Aadhaar number, a bank account
+number and a home address. None of these belong on a public website and none of
+them are anywhere in these files. Be careful who you send those PDFs to.
 
 ---
 
@@ -19,8 +35,6 @@ Fastest way: open each `.html` file, use Find & Replace, done in 10 minutes.
 
 The site works without any of these — it shows a warm gradient instead of a
 broken image. But real photos will do more for orders than anything else here.
-
-**Priority order:**
 
 | Filename | What | Size |
 |---|---|---|
@@ -53,7 +67,7 @@ broken image. But real photos will do more for orders than anything else here.
 
 **Fixed**
 - `Panner` → `Paneer` everywhere (also `Mashroom` → `Mushroom`, `Spicale` → `Special`)
-- Removed every "★ 4.7 real reviews soon" — that was a rating with nothing behind it
+- Removed every "★ 4.7 real reviews soon" — a rating with nothing behind it
 - Removed the "Map placeholder" developer note; real Google Maps embed on Visit Us
 - "India's Favourite" → "Safidon's own", which is true and better for local search
 - 6 Pizza Combo no longer lists chicken — your kitchen is pure veg
@@ -63,8 +77,10 @@ broken image. But real photos will do more for orders than anything else here.
 - Opening hours in the footer, ticker and schema
 - Delivery strip on every page: area, minimum, charge, time, packing
 - Green veg mark on all 161 items
-- Restaurant schema, Open Graph and Twitter cards on every page
-- FSSAI line in the footer
+- Restaurant schema with your real coordinates, licence and social profiles
+- Open Graph and Twitter cards on every page
+- FSSAI licence number in the footer and on Visit Us
+- Instagram, Facebook and Google Maps links
 - Cart now survives moving between pages
 - Pizza size picker — you can add Medium or Large, not just Regular
 - Order sheet collects name, address, dine-in/takeaway and payment before WhatsApp
