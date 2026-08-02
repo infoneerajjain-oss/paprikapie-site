@@ -31,26 +31,35 @@ them are anywhere in these files. Be careful who you send those PDFs to.
 
 ---
 
-# Photos to add (images/ folder)
+# Photos — 8 done, 6 still needed
 
-The site works without any of these — it shows a warm gradient instead of a
-broken image. But real photos will do more for orders than anything else here.
+Already in `images/` from what you sent:
+
+| File | Shows |
+|---|---|
+| `logo.png` `favicon.png` | Your logo, in the header, footer and browser tab |
+| `share-card.jpg` | Logo over a pizza — this is what appears when your link is shared on WhatsApp |
+| `hero.jpg` | Behind the homepage headline |
+| `pizza-onion.jpg` | Onion Topping Pizza |
+| `pizza-tomato.jpg` | Tomato Topping Pizza |
+| `pizza-capsicum.jpg` | Capsicum Topping Pizza |
+| `pizza-cheesy.jpg` | Cheesy Pizza |
+| `masala-dosa.jpg` `masala-dosa-2.jpg` | Masala Dosa and Paneer Masala Dosa |
+
+Still missing — the site shows a warm gradient in their place, never a broken
+image, so you can go live without them:
 
 | Filename | What | Size |
 |---|---|---|
-| `share-card.jpg` | Best pizza photo + logo. Shows when anyone shares your link on WhatsApp. | 1200 × 630 |
-| `hero.jpg` | Wide shot of your food or your shop front. Sits behind the homepage headline. | 1600 × 900 |
-| `masala-dosa.jpg` | | 800 × 600 |
-| `vada-pav.jpg` | | 800 × 600 |
-| `paneer-overloaded.jpg` | | 800 × 600 |
-| `white-sauce-pasta.jpg` | | 800 × 600 |
-| `paneer-dosa.jpg` | | 800 × 600 |
-| `paneer-momos.jpg` | | 800 × 600 |
-| `malai-chaap.jpg` | | 800 × 600 |
-| `oreo-shake.jpg` | | 800 × 600 |
-| `pizza-onion.jpg` `pizza-tomato.jpg` `pizza-capsicum.jpg` `pizza-cheesy.jpg` `pizza-corn.jpg` `pizza-soya.jpg` | Topping pizzas | 800 × 600 |
-| `offer-combo.jpg` `offer-vadapav.jpg` | Your offer posters | 640 × 400 |
-| `favicon.png` | Your logo, square | 180 × 180 |
+| `vada-pav.jpg` | Aloo Vada Pav | 800 × 600 |
+| `paneer-overloaded.jpg` | Paneer Overloaded Pizza | 800 × 600 |
+| `white-sauce-pasta.jpg` | White Sauce Pasta | 800 × 600 |
+| `paneer-momos.jpg` | Paneer Momos (Fry) | 800 × 600 |
+| `malai-chaap.jpg` | Malai Chaap | 800 × 600 |
+| `oreo-shake.jpg` | Oreo Shake | 800 × 600 |
+| `pizza-corn.jpg` `pizza-soya.jpg` | Sweet Corn and Soya topping pizzas | 800 × 600 |
+| `offer-combo.jpg` `offer-vadapav.jpg` | Your two offer posters | 640 × 400 |
+| `shopfront.jpg` | Your shop from the road — nothing builds local trust faster | 1200 × 800 |
 
 **How to shoot them on a phone, in one evening:**
 
