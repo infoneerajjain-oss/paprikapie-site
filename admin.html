@@ -1,0 +1,692 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PaprikaPie Kitchen Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=Martian+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper:#FFFDF8;
+  --ticket:#FDF6E7;
+  --ink:#221611;
+  --ink-soft:#6B5A50;
+  --paprika:#B32218;
+  --paprika-dark:#7D1610;
+  --turmeric:#E9A825;
+  --curry:#2F6B4F;
+  --line:#E4D9C7;
+  --shadow:rgba(34,22,17,.10);
+  --r:14px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Instrument Sans",system-ui,sans-serif;
+  font-size:16px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;margin:0;letter-spacing:-.02em}
+.mono{font-family:"Martian Mono",ui-monospace,monospace}
+
+/* ---------- shell ---------- */
+.wrap{max-width:760px;margin:0 auto;padding:0 18px 120px}
+
+.masthead{
+  background:var(--paprika-dark);
+  color:#FFF3E4;
+  padding:22px 0 0;
+  border-bottom:3px solid var(--ink);
+}
+.masthead .inner{max-width:760px;margin:0 auto;padding:0 18px}
+.brandrow{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{font-family:"Bricolage Grotesque";font-weight:800;font-size:clamp(26px,6vw,36px);line-height:1}
+.brand em{font-style:normal;color:var(--turmeric)}
+.kicker{font-family:"Martian Mono";font-size:10px;letter-spacing:.16em;text-transform:uppercase;opacity:.75}
+
+/* tabs */
+nav.tabs{display:flex;gap:4px;margin-top:20px;overflow-x:auto;scrollbar-width:none}
+nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs button{
+  flex:0 0 auto;appearance:none;border:0;cursor:pointer;
+  background:rgba(255,243,228,.14);color:#FFF3E4;
+  font-family:"Martian Mono";font-size:11px;letter-spacing:.06em;
+  padding:11px 15px;border-radius:10px 10px 0 0;
+  transition:background .15s;
+}
+nav.tabs button:hover{background:rgba(255,243,228,.26)}
+nav.tabs button[aria-selected="true"]{background:var(--paper);color:var(--paprika-dark);font-weight:600}
+nav.tabs button:focus-visible{outline:2px solid var(--turmeric);outline-offset:2px}
+
+/* ---------- panels ---------- */
+.panel{display:none;padding-top:26px;animation:rise .28s ease both}
+.panel.on{display:block}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.eyebrow{font-family:"Martian Mono";font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--paprika);margin-bottom:6px}
+.panel h2{font-size:clamp(22px,5vw,30px);font-weight:800;line-height:1.1}
+.lede{color:var(--ink-soft);margin:8px 0 22px;max-width:56ch}
+
+.card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--r);
+  padding:18px;margin-bottom:16px;box-shadow:0 1px 0 var(--shadow);
+}
+.card h3{font-size:17px;font-weight:600;margin-bottom:4px}
+.card p.hint{color:var(--ink-soft);font-size:14px;margin:0 0 14px}
+
+label.fld{display:block;font-size:13px;font-weight:600;margin:0 0 6px}
+input[type=text],textarea,select{
+  width:100%;font:inherit;font-size:15px;color:var(--ink);
+  background:var(--paper);border:1.5px solid var(--line);border-radius:10px;
+  padding:11px 12px;
+}
+textarea{min-height:96px;resize:vertical}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--turmeric);outline-offset:1px;border-color:var(--turmeric)}
+
+/* drop zone */
+.drop{
+  border:2px dashed var(--line);border-radius:var(--r);
+  padding:30px 18px;text-align:center;cursor:pointer;
+  background:var(--ticket);transition:border-color .15s,background .15s;
+}
+.drop:hover,.drop.hot{border-color:var(--paprika);background:#FCEFE7}
+.drop .big{font-family:"Bricolage Grotesque";font-weight:600;font-size:17px}
+.drop .sub{font-size:13px;color:var(--ink-soft);margin-top:4px}
+.drop img{max-width:100%;max-height:230px;border-radius:8px;margin-bottom:10px}
+
+/* buttons */
+.btn{
+  appearance:none;border:0;cursor:pointer;font:inherit;font-weight:600;
+  background:var(--paprika);color:#fff;padding:13px 20px;border-radius:11px;
+  display:inline-flex;align-items:center;gap:8px;transition:transform .12s,background .15s;
+}
+.btn:hover{background:var(--paprika-dark)}
+.btn:active{transform:translateY(1px)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--paprika);border:1.5px solid var(--line)}
+.btn.ghost:hover{border-color:var(--paprika);background:#FCEFE7}
+.btn.small{padding:8px 13px;font-size:13px;border-radius:9px}
+.btn:focus-visible{outline:2px solid var(--turmeric);outline-offset:2px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+.chip{
+  appearance:none;cursor:pointer;font:inherit;font-size:13px;
+  background:var(--paper);border:1.5px solid var(--line);border-radius:999px;padding:7px 14px;color:var(--ink);
+}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+/* ---------- signature: kitchen order ticket ---------- */
+.ticket{
+  position:relative;background:var(--ticket);
+  border:1px solid var(--line);border-bottom:0;
+  border-radius:10px 10px 0 0;padding:20px 18px 26px;
+  font-family:"Martian Mono";font-size:12.5px;line-height:1.7;
+}
+.ticket::after{
+  content:"";position:absolute;left:-1px;right:-1px;bottom:-13px;height:14px;
+  background-image:
+    linear-gradient(45deg,var(--paper) 50%,transparent 50%),
+    linear-gradient(-45deg,var(--paper) 50%,transparent 50%);
+  background-size:14px 14px;background-repeat:repeat-x;
+}
+.ticket .tk-head{text-align:center;border-bottom:1px dashed #C9B79C;padding-bottom:10px;margin-bottom:12px}
+.ticket .tk-head b{font-size:14px;letter-spacing:.1em}
+.ticket .tk-head span{display:block;font-size:10px;opacity:.6;letter-spacing:.1em;margin-top:3px}
+.ticket .tk-line{display:flex;justify-content:space-between;gap:14px}
+.ticket .tk-line span:last-child{text-align:right;flex:0 0 auto}
+.ticket .tk-rule{border-top:1px dashed #C9B79C;margin:11px 0}
+.ticket .tk-total{font-weight:600;font-size:15px}
+.ticket-wrap{margin-bottom:30px}
+
+/* offer list */
+.offer{display:flex;gap:12px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--line)}
+.offer:last-child{border-bottom:0}
+.offer .meta{flex:1;min-width:0}
+.offer .t{font-weight:600}
+.offer .d{font-size:13px;color:var(--ink-soft)}
+.tag{font-family:"Martian Mono";font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;padding:3px 7px;border-radius:5px}
+.tag.live{background:#E4F1E9;color:var(--curry)}
+.tag.exp{background:#F3E9E8;color:var(--paprika)}
+
+/* output box */
+.out{
+  background:var(--ticket);border:1px solid var(--line);border-radius:10px;
+  padding:14px;white-space:pre-wrap;font-size:14.5px;margin-bottom:10px;
+}
+.out.code{font-family:"Martian Mono";font-size:12px;overflow-x:auto;white-space:pre}
+
+/* status */
+.status{font-size:13.5px;color:var(--ink-soft);margin-top:10px;min-height:20px}
+.status.err{color:var(--paprika);font-weight:500}
+.spin{display:inline-block;width:13px;height:13px;border:2px solid var(--line);border-top-color:var(--paprika);border-radius:50%;animation:sp .7s linear infinite;vertical-align:-2px;margin-right:7px}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+.note{
+  background:#FFF8E8;border-left:3px solid var(--turmeric);
+  padding:12px 14px;border-radius:0 10px 10px 0;font-size:14px;margin-bottom:16px;
+}
+.note b{font-weight:600}
+
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:16px}
+.stat{background:var(--ticket);border:1px solid var(--line);border-radius:11px;padding:13px}
+.stat .n{font-family:"Bricolage Grotesque";font-weight:800;font-size:24px;line-height:1}
+.stat .l{font-family:"Martian Mono";font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-top:5px}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<header class="masthead">
+  <div class="inner">
+    <div class="brandrow">
+      <div class="brand">Paprika<em>Pie</em> Kitchen Desk</div>
+      <div class="kicker">Safidon · Admin</div>
+    </div>
+    <nav class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" data-p="offers">01 Offers</button>
+      <button role="tab" aria-selected="false" data-p="social">02 Posts</button>
+      <button role="tab" aria-selected="false" data-p="replies">03 WhatsApp</button>
+      <button role="tab" aria-selected="false" data-p="visitors">04 Visitors</button>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- ============ 01 OFFERS ============ -->
+<section class="panel on" id="p-offers" role="tabpanel">
+  <div class="eyebrow">Poster in, website out</div>
+  <h2>Turn a poster into a live offer</h2>
+  <p class="lede">Photograph the poster you print for the shop. It reads the price, items and terms, then writes the file your website loads.</p>
+
+  <div class="card">
+    <div class="drop" id="drop" tabindex="0" role="button" aria-label="Upload offer poster">
+      <div id="dropInner">
+        <div class="big">Add your poster</div>
+        <div class="sub">Tap to choose a photo, or drag one here</div>
+      </div>
+    </div>
+    <input type="file" id="file" accept="image/*" hidden>
+    <div class="row" style="margin-top:14px">
+      <button class="btn" id="readBtn" disabled>Read the poster</button>
+      <button class="btn ghost small" id="clearImg" hidden>Remove photo</button>
+    </div>
+    <div class="status" id="offerStatus"></div>
+  </div>
+
+  <div id="ticketArea" hidden>
+    <div class="ticket-wrap">
+      <div class="ticket" id="ticket"></div>
+    </div>
+    <div class="card">
+      <h3>Check before it goes live</h3>
+      <p class="hint">Fix anything it read wrong, then save.</p>
+      <label class="fld" for="oTitle">Offer name</label>
+      <input type="text" id="oTitle" style="margin-bottom:12px">
+      <label class="fld" for="oDesc">Description shown on the site</label>
+      <textarea id="oDesc" style="margin-bottom:12px"></textarea>
+      <div class="row" style="gap:12px;margin-bottom:12px">
+        <div style="flex:1;min-width:130px">
+          <label class="fld" for="oPrice">Price (₹)</label>
+          <input type="text" id="oPrice">
+        </div>
+        <div style="flex:1;min-width:150px">
+          <label class="fld" for="oValid">Runs until</label>
+          <input type="text" id="oValid" placeholder="2026-08-31">
+        </div>
+      </div>
+      <label class="fld" for="oTerms">Terms</label>
+      <input type="text" id="oTerms" style="margin-bottom:16px">
+      <button class="btn" id="saveOffer">Save to offers list</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Offers on your site</h3>
+    <p class="hint">Anything past its end date stops showing on the website by itself.</p>
+    <div id="offerList"></div>
+    <div class="row" style="margin-top:16px">
+      <button class="btn" id="exportBtn">Copy offers.json</button>
+      <button class="btn ghost" id="downloadBtn">Download offers.json</button>
+    </div>
+    <div class="status" id="exportStatus"></div>
+  </div>
+</section>
+
+<!-- ============ 02 SOCIAL ============ -->
+<section class="panel" id="p-social" role="tabpanel">
+  <div class="eyebrow">Instagram · Facebook · Status</div>
+  <h2>Write this week's posts</h2>
+  <p class="lede">Pick what you're pushing. It writes in the Hinglish your Safidon customers actually use, with the local hashtags.</p>
+
+  <div class="card">
+    <label class="fld">What are you posting about?</label>
+    <div class="chips" id="topicChips">
+      <button class="chip" aria-pressed="true">6 Pizza Combo ₹360</button>
+      <button class="chip" aria-pressed="false">Paneer Overloaded Pizza</button>
+      <button class="chip" aria-pressed="false">Masala Dosa</button>
+      <button class="chip" aria-pressed="false">Vada Pav offer</button>
+      <button class="chip" aria-pressed="false">Something else</button>
+    </div>
+    <label class="fld" for="sCustom">Add any detail (optional)</label>
+    <input type="text" id="sCustom" placeholder="e.g. free delivery this Sunday, new peri-peri fries" style="margin-bottom:14px">
+
+    <label class="fld">Where is it going?</label>
+    <div class="chips" id="platChips">
+      <button class="chip" aria-pressed="true">Instagram</button>
+      <button class="chip" aria-pressed="false">Facebook</button>
+      <button class="chip" aria-pressed="false">WhatsApp Status</button>
+      <button class="chip" aria-pressed="false">All three</button>
+    </div>
+    <button class="btn" id="genSocial">Write the posts</button>
+    <div class="status" id="socialStatus"></div>
+  </div>
+  <div id="socialOut"></div>
+</section>
+
+<!-- ============ 03 REPLIES ============ -->
+<section class="panel" id="p-replies" role="tabpanel">
+  <div class="eyebrow">WhatsApp Business</div>
+  <h2>Answer orders without typing</h2>
+  <p class="lede">Real auto-reply lives inside the free WhatsApp Business app: greeting message, away message, and quick replies you fire with a slash. This writes all of them for you to paste in.</p>
+
+  <div class="note">
+    <b>Where these go:</b> WhatsApp Business → Settings → Business tools → Greeting message / Away message / Quick replies. Full send-anything-automatically needs the paid WhatsApp Business API — worth it only above roughly 40–50 orders a day.
+  </div>
+
+  <div class="card">
+    <label class="fld" for="rHours">Your opening hours</label>
+    <input type="text" id="rHours" value="11:00 AM – 11:00 PM, all days" style="margin-bottom:12px">
+    <label class="fld" for="rArea">Delivery area &amp; charge</label>
+    <input type="text" id="rArea" value="Safidon town + 5 km. Free above ₹299, else ₹20." style="margin-bottom:12px">
+    <label class="fld" for="rTime">Usual delivery time</label>
+    <input type="text" id="rTime" value="30–40 minutes" style="margin-bottom:14px">
+    <button class="btn" id="genReplies">Write my replies</button>
+    <div class="status" id="repliesStatus"></div>
+  </div>
+  <div id="repliesOut"></div>
+</section>
+
+<!-- ============ 04 VISITORS ============ -->
+<section class="panel" id="p-visitors" role="tabpanel">
+  <div class="eyebrow">Who came, what they wanted</div>
+  <h2>Visitor tracking</h2>
+  <p class="lede">Two lines of code and you'll know which dishes people open most — that's what should go on the poster next week.</p>
+
+  <div class="card">
+    <h3>Step 1 — Turn on counting</h3>
+    <p class="hint">Cloudflare Web Analytics is free, needs no cookie banner, and doesn't slow the site. Sign up, add paprikapie.co.in, then paste your token below to get the exact snippet.</p>
+    <label class="fld" for="cfToken">Your Cloudflare token</label>
+    <input type="text" id="cfToken" placeholder="paste token here" style="margin-bottom:12px">
+    <div class="out code" id="cfSnippet">Paste your token above to get the snippet.</div>
+    <button class="btn ghost small" id="copyCf">Copy snippet</button>
+    <p class="hint" style="margin:14px 0 0">Paste it just before <span class="mono">&lt;/body&gt;</span> on every page.</p>
+  </div>
+
+  <div class="card">
+    <h3>Step 2 — Track what people click</h3>
+    <p class="hint">Add this to your site so you can see which items get added to the cart and how many people actually hit WhatsApp. Paste it below the snippet above.</p>
+    <div class="out code" id="evtSnippet">&lt;script&gt;
+document.addEventListener('click', function (e) {
+  var add = e.target.closest('[data-add-to-cart]');
+  if (add) track('add_to_cart', add.dataset.item || add.textContent.trim());
+
+  var wa = e.target.closest('a[href*="wa.me"]');
+  if (wa) track('whatsapp_click', location.pathname);
+
+  var call = e.target.closest('a[href^="tel:"]');
+  if (call) track('call_click', location.pathname);
+});
+
+function track(name, label) {
+  var log = JSON.parse(localStorage.getItem('pp_events') || '[]');
+  log.push({ e: name, l: label, t: Date.now() });
+  localStorage.setItem('pp_events', JSON.stringify(log.slice(-500)));
+  if (window.gtag) gtag('event', name, { label: label });
+}
+&lt;/script&gt;</div>
+    <button class="btn ghost small" id="copyEvt">Copy snippet</button>
+  </div>
+
+  <div class="card">
+    <h3>Step 3 — Ask what the numbers mean</h3>
+    <p class="hint">Once you have a week of data, paste the summary here and get a plain answer on what to change.</p>
+    <div class="stat-grid">
+      <div class="stat"><div class="n" id="dPages">—</div><div class="l">Pages</div></div>
+      <div class="stat"><div class="n" id="dTop">—</div><div class="l">Most opened</div></div>
+      <div class="stat"><div class="n" id="dWa">—</div><div class="l">WhatsApp taps</div></div>
+    </div>
+    <label class="fld" for="vData">Paste your numbers</label>
+    <textarea id="vData" placeholder="e.g. 420 visitors this week. Pizza menu 310 views, South Indian 44, Offers 120. 38 WhatsApp clicks, 12 calls. Most left on the pizza page."></textarea>
+    <div class="row" style="margin-top:14px"><button class="btn" id="genInsight">Read my numbers</button></div>
+    <div class="status" id="visitorStatus"></div>
+  </div>
+  <div id="visitorOut"></div>
+</section>
+
+</div>
+
+<script>
+/* ============================================================
+   PaprikaPie Kitchen Desk
+   API_ENDPOINT: leave as-is while testing inside Claude.
+   On your own site (Netlify/Vercel), change it to your function
+   path so your API key stays on the server. See SETUP.md.
+   ============================================================ */
+const API_ENDPOINT = "https://api.anthropic.com/v1/messages";
+const MODEL = "claude-sonnet-4-6";
+
+const BRAND = `PaprikaPie is a vegetarian pizza, pasta and South Indian kitchen on M.G. Road, Opp. Stadium Market, Safidon - 126112 (Jind), Haryana. Phone and WhatsApp: 9896333158. Website paprikapie.co.in. Everything is made fresh only after the order is confirmed. Popular items: Any One Topping Pizza from Rs 100, Paneer Overloaded Pizza Rs 299, Paprika Special Paneer Pizza Rs 399, Masala Dosa Rs 100, Paneer Masala Dosa Rs 170, White Sauce Pasta Rs 179, Aloo Vada Pav Rs 49, paneer momos Rs 130. Dine-in, takeaway and home delivery. Customers are small-town Haryana families and students who speak Hindi and English mixed. Always spell it "paneer", never "panner".`;
+
+/* ---------- storage: Claude artifact storage, else browser, else memory ---------- */
+const mem = {};
+const store = {
+  async get(k){
+    if (window.storage) { try { const r = await window.storage.get(k); return r ? JSON.parse(r.value) : null; } catch { return null; } }
+    try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : null; } catch { return mem[k] ?? null; }
+  },
+  async set(k,v){
+    if (window.storage) { try { await window.storage.set(k, JSON.stringify(v)); return true; } catch {} }
+    try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch { mem[k] = v; return true; }
+  }
+};
+
+/* ---------- api ---------- */
+async function ask(content, system){
+  const body = { model: MODEL, max_tokens: 1000, messages: [{ role:"user", content }] };
+  if (system) body.system = system;
+  const res = await fetch(API_ENDPOINT, {
+    method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify(body)
+  });
+  if (!res.ok) throw new Error("Request failed (" + res.status + ")");
+  const data = await res.json();
+  return (data.content || []).filter(b => b.type === "text").map(b => b.text).join("\n").trim();
+}
+function parseJSON(text){
+  const clean = text.replace(/```json|```/g, "").trim();
+  const s = clean.indexOf("{"), e = clean.lastIndexOf("}");
+  return JSON.parse(s > -1 ? clean.slice(s, e + 1) : clean);
+}
+function setStatus(el, msg, err){
+  const n = document.getElementById(el);
+  n.className = "status" + (err ? " err" : "");
+  n.innerHTML = msg;
+}
+function busy(el, msg){ setStatus(el, '<span class="spin"></span>' + msg); }
+
+/* ---------- tabs ---------- */
+document.querySelectorAll("nav.tabs button").forEach(b => {
+  b.onclick = () => {
+    document.querySelectorAll("nav.tabs button").forEach(x => x.setAttribute("aria-selected", x === b));
+    document.querySelectorAll(".panel").forEach(p => p.classList.toggle("on", p.id === "p-" + b.dataset.p));
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+});
+function chipGroup(id){
+  const g = document.getElementById(id);
+  g.querySelectorAll(".chip").forEach(c => c.onclick = () => {
+    g.querySelectorAll(".chip").forEach(x => x.setAttribute("aria-pressed", x === c));
+  });
+  return () => g.querySelector('[aria-pressed="true"]').textContent;
+}
+const topicOf = chipGroup("topicChips");
+const platOf  = chipGroup("platChips");
+
+/* ============ 01 OFFERS ============ */
+let imgData = null, imgType = null, draft = null;
+let offers = [];
+
+const drop = document.getElementById("drop"), fileIn = document.getElementById("file");
+drop.onclick = () => fileIn.click();
+drop.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); fileIn.click(); } };
+drop.ondragover = e => { e.preventDefault(); drop.classList.add("hot"); };
+drop.ondragleave = () => drop.classList.remove("hot");
+drop.ondrop = e => { e.preventDefault(); drop.classList.remove("hot"); if (e.dataTransfer.files[0]) loadImg(e.dataTransfer.files[0]); };
+fileIn.onchange = () => fileIn.files[0] && loadImg(fileIn.files[0]);
+
+function loadImg(f){
+  if (!f.type.startsWith("image/")) { setStatus("offerStatus", "That file isn't an image. Use a JPG or PNG photo of the poster.", true); return; }
+  const r = new FileReader();
+  r.onload = () => {
+    imgData = r.result.split(",")[1];
+    imgType = f.type;
+    document.getElementById("dropInner").innerHTML =
+      '<img src="' + r.result + '" alt="Offer poster"><div class="sub">Tap to choose a different photo</div>';
+    document.getElementById("readBtn").disabled = false;
+    document.getElementById("clearImg").hidden = false;
+    setStatus("offerStatus", "");
+  };
+  r.readAsDataURL(f);
+}
+document.getElementById("clearImg").onclick = e => {
+  e.stopPropagation();
+  imgData = null; fileIn.value = "";
+  document.getElementById("dropInner").innerHTML =
+    '<div class="big">Add your poster</div><div class="sub">Tap to choose a photo, or drag one here</div>';
+  document.getElementById("readBtn").disabled = true;
+  e.target.hidden = true;
+};
+
+document.getElementById("readBtn").onclick = async () => {
+  if (!imgData) return;
+  busy("offerStatus", "Reading the poster…");
+  document.getElementById("readBtn").disabled = true;
+  try {
+    const txt = await ask([
+      { type: "image", source: { type: "base64", media_type: imgType, data: imgData } },
+      { type: "text", text:
+`This is a promotional poster from PaprikaPie restaurant. ${BRAND}
+
+Read everything on it and return ONLY a JSON object, no preamble and no markdown fences:
+{"title":"short offer name including the price","price":"number only, no rupee sign","description":"one or two warm sentences for the website listing the items included","items":["item","item"],"terms":"conditions such as packing charges extra, takeaway only","validTill":"YYYY-MM-DD or empty string if the poster gives no end date","whatsapp":"a first-person message a customer would send to order this"}
+
+Correct any spelling on the poster, especially write paneer not panner. If a field is not on the poster use an empty string.` }
+    ]);
+    draft = parseJSON(txt);
+    fillDraft(draft);
+    setStatus("offerStatus", "Read it. Check the ticket below before saving.");
+  } catch (err) {
+    setStatus("offerStatus", "Couldn't read that one — " + err.message + ". Try a clearer, brighter photo.", true);
+  }
+  document.getElementById("readBtn").disabled = false;
+};
+
+function fillDraft(d){
+  document.getElementById("ticketArea").hidden = false;
+  document.getElementById("oTitle").value = d.title || "";
+  document.getElementById("oDesc").value  = d.description || "";
+  document.getElementById("oPrice").value = d.price || "";
+  document.getElementById("oValid").value = d.validTill || "";
+  document.getElementById("oTerms").value = d.terms || "";
+  renderTicket(d);
+  ["oTitle","oDesc","oPrice","oValid","oTerms"].forEach(id =>
+    document.getElementById(id).oninput = () => renderTicket(readForm()));
+  document.getElementById("ticketArea").scrollIntoView({ behavior:"smooth", block:"start" });
+}
+function readForm(){
+  return {
+    title: document.getElementById("oTitle").value,
+    description: document.getElementById("oDesc").value,
+    price: document.getElementById("oPrice").value,
+    validTill: document.getElementById("oValid").value,
+    terms: document.getElementById("oTerms").value,
+    items: draft ? draft.items : [],
+    whatsapp: draft ? draft.whatsapp : ""
+  };
+}
+function esc(s){ return String(s || "").replace(/[<>&]/g, c => ({ "<":"&lt;", ">":"&gt;", "&":"&amp;" }[c])); }
+function renderTicket(d){
+  const items = (d.items || []).map(i =>
+    '<div class="tk-line"><span>' + esc(i) + '</span><span>✓</span></div>').join("");
+  document.getElementById("ticket").innerHTML =
+    '<div class="tk-head"><b>PAPRIKAPIE</b><span>SAFIDON · 9896333158</span></div>' +
+    '<div class="tk-line"><span>' + esc(d.title || "Untitled offer") + '</span></div>' +
+    (items ? '<div class="tk-rule"></div>' + items : "") +
+    '<div class="tk-rule"></div>' +
+    '<div class="tk-line tk-total"><span>PRICE</span><span>₹' + esc(d.price || "—") + '</span></div>' +
+    '<div class="tk-line"><span>RUNS TILL</span><span>' + esc(d.validTill || "no end date") + '</span></div>' +
+    (d.terms ? '<div class="tk-rule"></div><div class="tk-line"><span>' + esc(d.terms) + '</span></div>' : "");
+}
+
+document.getElementById("saveOffer").onclick = async () => {
+  const d = readForm();
+  if (!d.title.trim()) { setStatus("offerStatus", "Give the offer a name first.", true); return; }
+  d.id = "offer-" + Date.now();
+  d.image = "";
+  d.active = true;
+  offers.unshift(d);
+  await store.set("pp_offers", offers);
+  renderOffers();
+  document.getElementById("ticketArea").hidden = true;
+  setStatus("offerStatus", "Saved. Now copy offers.json and push it to your repo.");
+};
+
+function expired(o){ return o.validTill && new Date(o.validTill) < new Date(new Date().toDateString()); }
+function renderOffers(){
+  const box = document.getElementById("offerList");
+  if (!offers.length) { box.innerHTML = '<p class="hint" style="margin:0">No offers yet. Read a poster above to add your first one.</p>'; return; }
+  box.innerHTML = offers.map((o, i) =>
+    '<div class="offer"><div class="meta"><div class="t">' + esc(o.title) + '</div>' +
+    '<div class="d">₹' + esc(o.price) + (o.validTill ? " · till " + esc(o.validTill) : " · no end date") + '</div></div>' +
+    '<span class="tag ' + (expired(o) ? "exp" : "live") + '">' + (expired(o) ? "ended" : "live") + '</span>' +
+    '<button class="btn ghost small" data-del="' + i + '">Remove</button></div>').join("");
+  box.querySelectorAll("[data-del]").forEach(b => b.onclick = async () => {
+    offers.splice(+b.dataset.del, 1); await store.set("pp_offers", offers); renderOffers();
+  });
+}
+function offersJSON(){
+  return JSON.stringify({
+    updated: new Date().toISOString().slice(0, 10),
+    offers: offers.map(o => ({
+      id:o.id, title:o.title, price:o.price, description:o.description,
+      items:o.items || [], terms:o.terms, validTill:o.validTill,
+      image:o.image || "", whatsapp:o.whatsapp || "", active:o.active !== false
+    }))
+  }, null, 2);
+}
+async function copyText(t, statusEl, msg){
+  try { await navigator.clipboard.writeText(t); setStatus(statusEl, msg); }
+  catch { setStatus(statusEl, "Couldn't copy automatically — select the text and copy it by hand.", true); }
+}
+document.getElementById("exportBtn").onclick = () => copyText(offersJSON(), "exportStatus", "Copied. Replace offers.json in your repo and the site updates itself.");
+document.getElementById("downloadBtn").onclick = () => {
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([offersJSON()], { type: "application/json" }));
+  a.download = "offers.json"; a.click();
+  setStatus("exportStatus", "Downloaded. Drop it into your repo root.");
+};
+
+/* ============ 02 SOCIAL ============ */
+document.getElementById("genSocial").onclick = async () => {
+  const topic = topicOf(), plat = platOf(), extra = document.getElementById("sCustom").value.trim();
+  busy("socialStatus", "Writing…");
+  try {
+    const t = await ask(
+`${BRAND}
+
+Write social posts about: ${topic}${extra ? ". Extra detail to include: " + extra : ""}
+Platform: ${plat}
+
+Rules: natural Hinglish the way a Haryana small-town shop actually writes, warm not corporate, no invented claims or prices beyond what I gave you, one clear call to action to WhatsApp 9896333158. Instagram gets a caption plus 12 hashtags mixing food and Safidon/Jind/Haryana local tags. Facebook gets slightly longer with the address. WhatsApp Status gets under 25 words.
+
+Return plain text with each platform under a heading like === INSTAGRAM ===. No other commentary.`);
+    document.getElementById("socialOut").innerHTML = blocks(t, "socialStatus");
+    setStatus("socialStatus", "");
+  } catch (e) { setStatus("socialStatus", "Didn't work — " + e.message + ". Try again.", true); }
+};
+
+/* ============ 03 REPLIES ============ */
+document.getElementById("genReplies").onclick = async () => {
+  busy("repliesStatus", "Writing your replies…");
+  try {
+    const t = await ask(
+`${BRAND}
+Opening hours: ${document.getElementById("rHours").value}
+Delivery: ${document.getElementById("rArea").value}
+Delivery time: ${document.getElementById("rTime").value}
+
+Write ready-to-paste WhatsApp Business messages. Friendly Hinglish, short lines, emoji used sparingly.
+
+=== GREETING MESSAGE ===
+(first-time senders, under 40 words, points to paprikapie.co.in)
+
+=== AWAY MESSAGE ===
+(outside opening hours)
+
+=== QUICK REPLY /menu ===
+=== QUICK REPLY /delivery ===
+=== QUICK REPLY /time ===
+=== QUICK REPLY /offers ===
+=== QUICK REPLY /payment ===
+(UPI, PhonePe, GPay, cards, cash)
+=== QUICK REPLY /confirm ===
+(confirming an order back to the customer, with a blank for the time)
+
+Return plain text only, nothing else.`);
+    document.getElementById("repliesOut").innerHTML = blocks(t, "repliesStatus");
+    setStatus("repliesStatus", "");
+  } catch (e) { setStatus("repliesStatus", "Didn't work — " + e.message + ". Try again.", true); }
+};
+
+/* ============ 04 VISITORS ============ */
+const cfIn = document.getElementById("cfToken");
+cfIn.oninput = () => {
+  const t = cfIn.value.trim();
+  document.getElementById("cfSnippet").textContent = t
+    ? '<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon=\'{"token": "' + t + '"}\'><\/script>'
+    : "Paste your token above to get the snippet.";
+};
+document.getElementById("copyCf").onclick = () => copyText(document.getElementById("cfSnippet").textContent, "visitorStatus", "Snippet copied.");
+document.getElementById("copyEvt").onclick = () => copyText(document.getElementById("evtSnippet").textContent, "visitorStatus", "Snippet copied.");
+
+document.getElementById("genInsight").onclick = async () => {
+  const d = document.getElementById("vData").value.trim();
+  if (!d) { setStatus("visitorStatus", "Paste your numbers first.", true); return; }
+  busy("visitorStatus", "Reading the numbers…");
+  try {
+    const t = await ask(
+`${BRAND}
+
+Here is a week of website traffic for paprikapie.co.in:
+${d}
+
+Return ONLY JSON, no fences:
+{"pages":"total visits as a short string","top":"most opened page or item, three words max","whatsapp":"whatsapp taps as a short string","reading":"two sentences on what these numbers actually say","actions":["specific thing to change this week","another","another"]}
+
+Base everything strictly on the numbers given. If a number isn't there, use a dash.`);
+    const j = parseJSON(t);
+    document.getElementById("dPages").textContent = j.pages || "—";
+    document.getElementById("dTop").textContent   = j.top || "—";
+    document.getElementById("dWa").textContent    = j.whatsapp || "—";
+    document.getElementById("visitorOut").innerHTML =
+      '<div class="card"><h3>What it means</h3><p style="margin:0 0 14px">' + esc(j.reading) + '</p>' +
+      '<h3>Do this week</h3><ul style="margin:8px 0 0;padding-left:20px">' +
+      (j.actions || []).map(a => "<li>" + esc(a) + "</li>").join("") + "</ul></div>";
+    setStatus("visitorStatus", "");
+  } catch (e) { setStatus("visitorStatus", "Didn't work — " + e.message + ". Try again.", true); }
+};
+
+/* ---------- shared output renderer ---------- */
+function blocks(text, statusEl){
+  const parts = text.split(/^===\s*(.+?)\s*===$/m).filter(s => s.trim());
+  let html = "", i = 0;
+  if (parts.length < 2) return '<div class="card"><div class="out">' + esc(text) + "</div></div>";
+  while (i < parts.length - 1) {
+    const head = parts[i], body = parts[i + 1].trim(); i += 2;
+    const id = "b" + i;
+    html += '<div class="card"><h3>' + esc(head) + '</h3><div class="out" id="' + id + '">' + esc(body) +
+            '</div><button class="btn ghost small" data-copy="' + id + '">Copy</button></div>';
+  }
+  setTimeout(() => document.querySelectorAll("[data-copy]").forEach(b =>
+    b.onclick = () => copyText(document.getElementById(b.dataset.copy).textContent, statusEl, "Copied.")), 0);
+  return html;
+}
+
+/* ---------- boot ---------- */
+(async () => {
+  offers = (await store.get("pp_offers")) || [];
+  renderOffers();
+})();
+</script>
