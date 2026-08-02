@@ -1,0 +1,36 @@
+{
+  "updated": "2026-08-03",
+  "offers": [
+    {
+      "id": "combo-6-pizza",
+      "title": "6 Pizza Combo — ₹360 only",
+      "price": "360",
+      "description": "Six mini pizzas, six flavours. Perfect for family & friends. Takeaway & delivery available.",
+      "items": [
+        "Margherita",
+        "Farmhouse",
+        "Paneer Tikka",
+        "Cheese Corn",
+        "Peri Peri",
+        "Onion Delight"
+      ],
+      "terms": "Packing charges extra.",
+      "validTill": "2026-09-30",
+      "image": "images/offer-combo.jpg",
+      "whatsapp": "Hi PaprikaPie, I'd like to order the 6 Pizza Combo @ ₹360.",
+      "active": true
+    },
+    {
+      "id": "vada-pav",
+      "title": "Vada Pav Offer — 2 for ₹70",
+      "price": "70",
+      "description": "Spiced potato vada in a soft pav, served with spicy or green mint chutney. 1 pc ₹50 or 2 pc ₹70.",
+      "items": ["Aloo vada pav", "Spicy chutney", "Green mint chutney"],
+      "terms": "Packing charges extra.",
+      "validTill": "2026-08-31",
+      "image": "images/offer-vadapav.jpg",
+      "whatsapp": "Hi PaprikaPie, I'd like to order Vada Pav — 2 pc @ ₹70.",
+      "active": true
+    }
+  ]
+}
